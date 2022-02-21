@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Debug",
+      "request": "launch",
+      "mainClass": "Debug",
+      "projectName": "LeetCode_31c74b4f"
+    },
+    {
+      "type": "java",
+      "name": "Java Debug",
+      "request": "launch",
+      "mainClass": "Debug",
+      "projectName": "LeetCode_31c74b4f"
+    }
+  ]
+}

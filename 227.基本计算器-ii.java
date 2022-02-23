@@ -1,14 +1,21 @@
 import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
- * @lc app=leetcode.cn id=224 lang=java
+ * @lc app=leetcode.cn id=227 lang=java
  *
- * [224] 基本计算器
+ * [227] 基本计算器 II
  */
 
 // @lc code=start
-class Calculate {
+class Calculate2 {
   public int calculate(String s) {
+    Map<Character, Integer> map = new HashMap<>();
+    map.put('-', 1);
+    map.put('+', 1);
+    map.put('*', 2);
+    map.put('/', 2);
     ArrayDeque<Integer> nums = new ArrayDeque<>();
     ArrayDeque<Character> ops = new ArrayDeque<>();
     nums.addLast(0);
@@ -37,7 +44,12 @@ class Calculate {
           nums.addLast(0);
         }
         while (!ops.isEmpty() && ops.peekLast() != '(') {
-          calc(nums, ops);
+          char prev = ops.peekLast();
+          if (map.get(prev) >= map.get(c)) {
+            calc(nums, ops);
+          } else {
+            break;
+          }
         }
         ops.addLast(c);
       }
@@ -49,12 +61,23 @@ class Calculate {
   }
 
   void calc(ArrayDeque<Integer> nums, ArrayDeque<Character> ops) {
-    if (nums.size() < 2) return;
-    if (ops.isEmpty()) return;
+    if (nums.size() < 2)
+      return;
+    if (ops.isEmpty())
+      return;
     int b = nums.pollLast();
     int a = nums.pollLast();
     char o = ops.pollLast();
-    int c = o == '+' ? a + b : a - b;
+    int c = 0;
+    if (o == '-') {
+      c = a - b;
+    } else if (o == '+') {
+      c = a + b;
+    } else if (o == '*') {
+      c = a * b;
+    } else {
+      c = a / b;
+    }
     nums.addLast(c);
   }
 

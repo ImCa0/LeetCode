@@ -7,7 +7,7 @@ import java.util.TreeSet;
  */
 
 // @lc code=start
-class Solution {
+class ContainsNearbyAlmostDuplicate {
   public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
     TreeSet<Long> ts = new TreeSet<>();
     for (int i = 0; i < nums.length; i++) {

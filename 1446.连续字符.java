@@ -7,18 +7,16 @@
 // @lc code=start
 class MaxPower {
   public int maxPower(String s) {
-    char curr = s.charAt(0);
-    int left = 0, right = 1, max = 1;
+    int left = 0, right = 0, power = 0;
     while (right < s.length()) {
-      if (s.charAt(right) == curr) {
-        max = Math.max(max, right - left + 1);
+      if (s.charAt(right) == s.charAt(left)) {
+        power = Math.max(power, right - left + 1);
       } else {
         left = right;
-        curr = s.charAt(right);
       }
       right++;
     }
-    return max;
+    return power;
   }
 }
 // @lc code=end

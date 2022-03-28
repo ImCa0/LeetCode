@@ -92,4 +92,60 @@ class PathsWithMaxScore {
     return new int[] { idx / n, idx % n };
   }
 }
+
+class MySolution {
+  int mod = 1000000007;
+  int INF = Integer.MIN_VALUE;
+  int n;
+
+  public int[] pathsWithMaxScore(List<String> board) {
+    n = board.size();
+    char[][] gird = new char[n][n];
+    for (int i = 0; i < n; i++) {
+      gird[i] = board.get(i).toCharArray();
+    }
+    int[] f = new int[n * n];
+    int[] g = new int[n * n];
+    int[][] dirs = { { 1, 0 }, { 0, 1 }, { 1, 1 } };
+    for (int i = n * n - 1; i >= 0; i--) {
+      int x = parseIdx(i)[0];
+      int y = parseIdx(i)[1];
+      if (i == n * n - 1) {
+        g[i] = 1;
+        continue;
+      }
+      if (gird[x][y] == 'X') {
+        f[i] = -INF;
+        continue;
+      }
+      f[i] = INF;
+      for (int[] dir : dirs) {
+        int nx = x + dir[0];
+        int ny = y + dir[1];
+        int curr = (x == 0 && y == 0) ? 0 : gird[x][y] - '0';
+        if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
+          if (f[getIdx(nx, ny)] == INF) {
+            continue;
+          }
+          if (f[getIdx(nx, ny)] + curr > f[i]) {
+            f[i] = f[getIdx(nx, ny)] + curr;
+            g[i] = g[getIdx(nx, ny)];
+          } else if (f[getIdx(nx, ny)] + curr == f[i]) {
+            g[i] += g[getIdx(nx, ny)];
+          }
+          g[i] %= mod;
+        }
+      }
+    }
+    return new int[] { (f[0] == INF) ? 0 : f[0], g[0] };
+  }
+
+  int getIdx(int x, int y) {
+    return x * n + y;
+  }
+
+  int[] parseIdx(int idx) {
+    return new int[] { idx / n, idx % n };
+  }
+}
 // @lc code=end

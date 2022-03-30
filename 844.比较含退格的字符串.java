@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-class Solution {
+class BackspaceCompare {
   public boolean backspaceCompare(String s, String t) {
     return build(s).equals(build(t));
   }

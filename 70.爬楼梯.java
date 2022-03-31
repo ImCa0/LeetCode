@@ -7,21 +7,16 @@
 // @lc code=start
 class ClimbStairs {
   public int climbStairs(int n) {
-    if (n == 1) {
-      return 1;
+    if (n == 1 || n == 2) {
+      return n;
     }
-    if (n == 2) {
-      return 2;
-    }
-    int pre_1 = 1;
-    int pre_2 = 2;
-    int temp;
+    int dp[] = new int[n + 1];
+    dp[1] = 1;
+    dp[2] = 2;
     for (int i = 3; i <= n; i++) {
-      temp = pre_1 + pre_2;
-      pre_1 = pre_2;
-      pre_2 = temp;
+      dp[i] = dp[i - 1] + dp[i - 2];
     }
-    return pre_2;
+    return dp[n];
   }
 }
 // @lc code=end

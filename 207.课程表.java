@@ -8,7 +8,7 @@ import java.util.Map;
  */
 
 // @lc code=start
-class Solution {
+class CanFinish {
   public boolean canFinish(int numCourses, int[][] prerequisites) {
     // map: 课程序号: 状态
     // 状态 0: 未学习

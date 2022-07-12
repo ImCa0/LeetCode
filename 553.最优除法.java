@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-class Solution {
+class OptimalDivision {
   public String optimalDivision(int[] nums) {
     StringBuilder sb = new StringBuilder();
     for (int i = 0; i < nums.length; i++) {

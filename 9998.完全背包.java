@@ -2,7 +2,7 @@ class PackageComplete {
   int packageComplete(int N, int C, int[] v, int[] w) {
     int[][] dp = new int[N][C + 1];
     for (int i = 0; i <= C; i++) {
-      dp[0][i] = i / v[0] * v[0];
+      dp[0][i] = i / v[0] * w[0];
     }
     for (int i = 1; i < N; i++) {
       for (int j = 0; j <= C; j++) {

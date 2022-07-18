@@ -10,7 +10,7 @@ import java.util.Map;
  */
 
 // @lc code=start
-class Solution {
+class LetterCombinations {
   Map<String, String[]> map = new HashMap<String, String[]>() {
     {
       put("2", new String[] { "a", "b", "c" });
